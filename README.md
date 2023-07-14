@@ -9,6 +9,7 @@
   - [Rules](#rules)
   - [Other Ideas (Not implemented)](#other-ideas-not-implemented)
 - [Extending \& Building Something New](#extending--building-something-new)
+- [Notes About Security](#notes-about-security)
 - [Bootstrapping](#bootstrapping)
   - [Problems?](#problems)
 
@@ -64,7 +65,13 @@ This repo is meant to be a starting point for bigger builds. Take the ideas, con
 
 * Dockerise the various components
 * If not self-hosting RMQ, look into various hosted options online. These are good for getting started and abstract away the management details.
-* Work out the rules and logic of the overal experience before you start diving too deep into code. A little planning can go a long way.
+* Work out the rules and logic of the overall experience before you start diving too deep into code. A little planning can go a long way.
+
+# Notes About Security
+
+For the sake of being clear and direct - this repository is not meant to be a template for a public-ready project. There are several shortcuts and conventions made to make it easy to build upon it, and while there is some authentication and authorization inherent to various components, it's important you take a look at your specific needs. Of course every project is different, so take your goals into consideration and build the appropriate mechanisms to ensure data and services are safe. One place to look first is the API interface to the rules engine - it will accept requests from any client, which is probably _not_ what you want. Second, look at the STOMP connection with the RabbitMQ server (and by proxy, the web interface itself) with a critical eye. Depending on scope, there are some rather simple measures you could take to secure your services reasonably well.
+
+If a hardened service is not your goal, enjoy this repo as-is and use it as a learning tool.
 
 # Bootstrapping
 
